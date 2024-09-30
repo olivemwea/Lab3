@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class LanguageCodeConverter {
 
-    private final List<String> languagename;
-    private final List<String> languagecode;
+    private List<String> languagename;
+    private List<String> languagecode;
 
     // TODO Task: pick appropriate instance variables to store the data necessary for this class
 
@@ -38,11 +38,13 @@ public class LanguageCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            this.languagename = new ArrayList<>(lines);
-            this.languagecode = new ArrayList<>(lines);
+            this.languagename = new ArrayList<>();
+            this.languagecode = new ArrayList<>();
 
-            for (String line : lines) {
-                String[] details = line.split("\t");
+            for (int i = 1; i < lines.size(); i++) {
+                String[] details = lines.get(i).split("\t");
+                System.out.println(details[0]);
+                System.out.println(details[1]);
                 this.languagename.add(details[0]);
                 this.languagecode.add(details[1]);
             }
